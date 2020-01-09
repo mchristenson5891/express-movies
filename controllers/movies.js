@@ -16,7 +16,7 @@ const create = (req, res) => {
   }
   const movie = new Movie(req.body);
   movie.save(err => {
-    if (err) return console.log(err);
+    if (err) return res.redirect("/movies/new");
     res.redirect("/movies");
   });
 };
@@ -24,7 +24,7 @@ const create = (req, res) => {
 const index = (req, res) => {
   Movie.find({}, (err, movies) => {
     if (err) {
-      return console.log(err);
+      console.log(err);
     }
     res.render("movies/index", {
       movies
